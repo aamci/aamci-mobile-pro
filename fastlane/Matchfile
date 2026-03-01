@@ -1,0 +1,14 @@
+# Fastlane Match — synchronisation des certificats iOS via un dépôt Git privé.
+# Documentation : https://docs.fastlane.tools/actions/match/
+
+git_url(ENV["MATCH_GIT_URL"])
+git_branch("mobile-pro")
+
+storage_mode("git")
+type("appstore") # appstore | adhoc | development | enterprise
+
+app_identifier(["com.healthplatform.mobilePro"])
+username(ENV["APPLE_ID"])
+
+# En CI, toujours en lecture seule (les certificats sont déjà créés)
+readonly(ENV["CI"] == "true")
