@@ -310,7 +310,7 @@ class _QuestionnaireCard extends StatelessWidget {
                     Switch(
                       value: isActive,
                       onChanged: onToggleActive,
-                      activeColor: const Color(0xFF16A34A),
+                      activeThumbColor: const Color(0xFF16A34A),
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   ],

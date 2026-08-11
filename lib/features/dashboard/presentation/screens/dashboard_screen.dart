@@ -323,7 +323,7 @@ class _NextAppointmentCard extends StatelessWidget {
                 ],
               ),
             ),
-            if (_isVisio && apt.id != null)
+            if (_isVisio)
               ElevatedButton.icon(
                 onPressed: () => context.push(
                   '/teleconsultation/${apt.id}',
