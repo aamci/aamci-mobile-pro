@@ -4,11 +4,15 @@ class ApiEndpoints {
   static const String register = '/auth/register';
   static const String logout = '/auth/logout';
   static const String me = '/auth/me';
+  static const String forgotPassword = '/auth/forgot-password';
+  static const String resetPassword = '/auth/reset-password';
+  static const String resendVerification = '/auth/resend-verification';
+  static const String deleteAccount = '/auth/account';
 
   // Dashboard / Stats
   static const String doctorOverview = '/stats/doctor/overview';
-  static const String nextAppointments = '/stats/next-appointments';
-  static const String revenueTimeline = '/stats/revenue-timeline';
+  static const String nextAppointments = '/stats/doctor/next-appointments';
+  static const String revenueTimeline = '/stats/doctor/revenue-timeline';
 
   // Availability Rules
   static const String availabilityRules = '/availability-rules';
@@ -52,7 +56,7 @@ class ApiEndpoints {
 
   // Wallet
   static const String wallet = '/wallet/me';
-  static const String walletMovements = '/wallet/movements';
+  static const String walletMovements = '/wallet/me/transactions';
 
   // Invoices
   static const String invoices = '/invoices';
@@ -95,4 +99,34 @@ class ApiEndpoints {
 
   // Availability Preferences
   static const String availabilityPreferences = '/availability-preferences';
+
+  // Tasks
+  static const String tasks = '/tasks';
+  static const String taskStats = '/tasks/stats';
+  static String taskById(String id) => '/tasks/$id';
+
+  // Referrals / Correspondances
+  static const String referrals = '/referrals';
+  static const String referralsSent = '/referrals/sent';
+  static const String referralsReceived = '/referrals/received';
+  static const String referralsReceivedPatients = '/referrals/received-patients';
+  static String referralById(String id) => '/referrals/$id';
+  static String referralRespond(String id) => '/referrals/$id/respond';
+  static String referralComplete(String id) => '/referrals/$id/complete';
+
+  // Doctor search (for referrals)
+  static const String doctorSearch = '/doctor-profiles/search';
+
+  // Teleconsultation
+  static String startVideo(String appointmentId) => '/appointments/$appointmentId/start-video';
+  static String endVideo(String appointmentId) => '/appointments/$appointmentId/end-video';
+
+  // Waitlist
+  static String waitlistDoctor(String doctorId) => '/waitlist/doctor/$doctorId';
+  static String waitlistEntry(String id) => '/waitlist/$id';
+
+  // Questionnaires
+  static const String questionnairesMine = '/questionnaires/mine';
+  static String questionnaireById(String id) => '/questionnaires/$id';
+  static const String createQuestionnaire = '/questionnaires';
 }

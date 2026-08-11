@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../data/models/appointment_model.dart';
 import '../providers/appointments_provider.dart';
@@ -127,6 +128,15 @@ class _AppointmentCard extends StatelessWidget {
   final void Function(String, String)? onStatusChange;
 
   const _AppointmentCard({required this.appointment, this.onStatusChange});
+
+  bool get _isVisio {
+    final name = (appointment.kind?.name ?? appointment.type).toLowerCase();
+    return name.contains('visio') ||
+        name.contains('téléconsultation') ||
+        name.contains('teleconsultation') ||
+        name.contains('video') ||
+        name.contains('vidéo');
+  }
 
   Color _statusColor(String status) {
     switch (status) {
@@ -258,6 +268,30 @@ class _AppointmentCard extends StatelessWidget {
                     child: const Text('Terminé'),
                   ),
                 ],
+              ),
+            ],
+            if (_isVisio && appointment.status == 'CONFIRMED') ...[
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () => context.push(
+                    '/teleconsultation/${appointment.id}',
+                    extra: {
+                      'patientName': appointment.patient?.fullName ??
+                          appointment.patient?.email,
+                    },
+                  ),
+                  icon: const Icon(Icons.videocam, size: 18),
+                  label: const Text('Rejoindre la visio'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF7C3AED),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                  ),
+                ),
               ),
             ],
           ],

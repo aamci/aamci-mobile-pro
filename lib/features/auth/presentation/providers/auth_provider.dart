@@ -117,6 +117,33 @@ class AuthNotifier extends StateNotifier<AuthState> {
     await _datasource.logout();
     state = const AuthState(status: AuthStatus.unauthenticated);
   }
+
+  Future<bool> forgotPassword(String email) async {
+    try {
+      await _datasource.forgotPassword(email);
+      return true;
+    } catch (_) {
+      return true;
+    }
+  }
+
+  Future<bool> resetPassword(String token, String password) async {
+    try {
+      await _datasource.resetPassword(token, password);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> resendVerification(String email) async {
+    try {
+      await _datasource.resendVerification(email);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {

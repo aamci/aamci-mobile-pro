@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
+import '../../../../core/constants/api_endpoints.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -144,6 +145,20 @@ class ProfileScreen extends ConsumerWidget {
                 ),
                 const Divider(height: 1),
                 ListTile(
+                  leading: const Icon(Icons.task_alt_outlined),
+                  title: const Text('Tâches'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/tasks'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(Icons.swap_horiz_outlined),
+                  title: const Text('Adressages'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/referrals'),
+                ),
+                const Divider(height: 1),
+                ListTile(
                   leading: const Icon(Icons.lock_outline),
                   title: const Text('Changer le mot de passe'),
                   trailing: const Icon(Icons.chevron_right),
@@ -162,8 +177,64 @@ class ProfileScreen extends ConsumerWidget {
               foregroundColor: Colors.red,
             ),
           ),
+          const SizedBox(height: 8),
+          TextButton(
+            onPressed: () => context.push('/privacy'),
+            child: const Text(
+              'Politique de confidentialité',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+          ),
+          const SizedBox(height: 4),
+          TextButton(
+            onPressed: () => _confirmDeleteAccount(context, ref),
+            child: const Text(
+              'Supprimer mon compte',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Future<void> _confirmDeleteAccount(BuildContext context, WidgetRef ref) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Supprimer le compte'),
+        content: const Text(
+          'Cette action est irréversible. Toutes vos données (patients, rendez-vous, disponibilités) seront définitivement supprimées.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Annuler'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Supprimer définitivement'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !context.mounted) return;
+
+    try {
+      final apiClient = ref.read(apiClientProvider);
+      await apiClient.delete(ApiEndpoints.deleteAccount);
+      await ref.read(authProvider.notifier).logout();
+    } catch (_) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Erreur lors de la suppression. Veuillez réessayer.'),
+        backgroundColor: Colors.red,
+      ));
+    }
   }
 }

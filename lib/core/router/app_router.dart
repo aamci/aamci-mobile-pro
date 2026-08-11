@@ -4,6 +4,8 @@ import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/splash_screen.dart';
+import '../../features/auth/presentation/screens/forgot_password_screen.dart';
+import '../../features/auth/presentation/screens/reset_password_screen.dart';
 import '../../features/dashboard/presentation/screens/dashboard_screen.dart';
 import '../../features/planning/presentation/screens/planning_screen.dart';
 import '../../features/appointments/presentation/screens/appointments_screen.dart';
@@ -25,6 +27,12 @@ import '../../features/invoices/presentation/screens/invoices_screen.dart';
 import '../../features/appointment_kinds/presentation/screens/appointment_kinds_screen.dart';
 import '../../features/team/presentation/screens/team_screen.dart';
 import '../../features/analytics/presentation/screens/analytics_screen.dart';
+import '../../features/tasks/presentation/screens/tasks_screen.dart';
+import '../../features/referrals/presentation/screens/referrals_screen.dart';
+import '../../features/teleconsultation/presentation/screens/teleconsultation_screen.dart';
+import '../../features/waitlist/presentation/screens/waitlist_screen.dart';
+import '../../features/questionnaires/presentation/screens/questionnaires_screen.dart';
+import '../../features/privacy/presentation/screens/privacy_screen.dart';
 import 'shell_scaffold.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -58,6 +66,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/register',
         builder: (context, state) => const RegisterScreen(),
+      ),
+      GoRoute(
+        path: '/forgot-password',
+        builder: (context, state) => const ForgotPasswordScreen(),
+      ),
+      GoRoute(
+        path: '/reset-password',
+        builder: (context, state) {
+          final token = state.uri.queryParameters['token'] ?? '';
+          return ResetPasswordScreen(token: token);
+        },
       ),
       GoRoute(
         path: '/patient/:id',
@@ -138,6 +157,37 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/analytics',
         builder: (context, state) => const AnalyticsScreen(),
+      ),
+      GoRoute(
+        path: '/tasks',
+        builder: (context, state) => const TasksScreen(),
+      ),
+      GoRoute(
+        path: '/referrals',
+        builder: (context, state) => const ReferralsScreen(),
+      ),
+      GoRoute(
+        path: '/privacy',
+        builder: (context, state) => const PrivacyScreen(),
+      ),
+      GoRoute(
+        path: '/waitlist',
+        builder: (context, state) => const WaitlistScreen(),
+      ),
+      GoRoute(
+        path: '/questionnaires',
+        builder: (context, state) => const QuestionnairesScreen(),
+      ),
+      GoRoute(
+        path: '/teleconsultation/:appointmentId',
+        builder: (context, state) {
+          final appointmentId = state.pathParameters['appointmentId']!;
+          final extra = state.extra as Map<String, dynamic>?;
+          return TeleconsultationScreen(
+            appointmentId: appointmentId,
+            patientName: extra?['patientName'] as String?,
+          );
+        },
       ),
       ShellRoute(
         builder: (context, state, child) => ShellScaffold(child: child),

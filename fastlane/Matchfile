@@ -7,7 +7,7 @@ git_branch("mobile-pro")
 storage_mode("git")
 type("appstore") # appstore | adhoc | development | enterprise
 
-app_identifier(["com.healthplatform.mobilePro"])
+app_identifier(["com.ibogha.pro"])
 username(ENV["APPLE_ID"])
 
 # En CI, toujours en lecture seule (les certificats sont déjà créés)
