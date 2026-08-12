@@ -72,7 +72,7 @@ platform :android do
       [
         "storePassword=#{store_pw}",
         "keyPassword=#{key_pw}",
-        "keyAlias=#{ENV.fetch('ANDROID_KEY_ALIAS', 'release')}",
+        "keyAlias=#{ENV.fetch('ANDROID_KEY_ALIAS', 'ibogha-pro')}",
         "storeFile=../release.keystore"
       ].join("\n")
     )
