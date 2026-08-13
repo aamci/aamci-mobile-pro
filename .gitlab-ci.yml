@@ -42,6 +42,9 @@ variables:
 
 .android-base:
   image: $FLUTTER_IMAGE
+  tags:
+    - flutter
+    - android
   cache:
     key: "android-pro-$CI_COMMIT_REF_SLUG"
     paths:
@@ -141,6 +144,30 @@ deploy:pro:android:release:
 
 # ─── iOS ──────────────────────────────────────────────────────────────────────
 
-# iOS jobs désactivés — nécessitent un runner macOS self-hosted (tag: macos, ios)
-# deploy:pro:ios:beta: ...
-# deploy:pro:ios:release: ...
+deploy:pro:ios:beta:
+  extends: .ios-base
+  stage: beta
+  needs: ["test:mobile-pro"]
+  variables:
+    BUILD_NUMBER: $CI_PIPELINE_IID
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  environment:
+    name: mobile-pro/beta
+  script:
+    - bundle exec fastlane ios beta
+
+deploy:pro:ios:release:
+  extends: .ios-base
+  stage: release
+  needs: ["test:mobile-pro"]
+  when: manual
+  variables:
+    BUILD_NUMBER: $CI_PIPELINE_IID
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^mobile-pro\/v.*/
+      when: manual
+  environment:
+    name: mobile-pro/production
+  script:
+    - bundle exec fastlane ios release
