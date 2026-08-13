@@ -32,10 +32,13 @@ platform :android do
     if json_key.nil? || json_key.empty?
       UI.important("GOOGLE_PLAY_JSON_KEY non définie — build produit mais non uploadé.")
     else
+      # Variable type "File" → chemin ; type "Variable" → contenu JSON
+      is_file = File.exist?(json_key.strip)
       upload_to_play_store(
         track:                   "internal",
         aab:                     "#{FLUTTER_ROOT}/build/app/outputs/bundle/release/app-release.aab",
-        json_key_data:           json_key,
+        json_key:                is_file ? json_key.strip : nil,
+        json_key_data:           is_file ? nil : json_key,
         skip_upload_screenshots: true,
         skip_upload_images:      true,
         skip_upload_metadata:    true,
