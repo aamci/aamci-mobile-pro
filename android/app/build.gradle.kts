@@ -48,8 +48,9 @@ android {
             } else {
                 signingConfigs.getByName("debug") // fallback local dev only
             }
-            isMinifyEnabled = true
-            isShrinkResources = true
+            val isCI = System.getenv("CI") != null
+            isMinifyEnabled = !isCI
+            isShrinkResources = !isCI
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
