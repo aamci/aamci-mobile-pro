@@ -56,9 +56,9 @@ variables:
     - export PUB_CACHE="$CI_PROJECT_DIR/.pub-cache"
     - flutter --version
     - java -version
+    - yes | sdkmanager --licenses > /dev/null 2>&1 || true
+    - sdkmanager "ndk;28.2.13676358" "build-tools;35.0.0" "platforms;android-34" > /dev/null 2>&1
     - cd "$APP_DIR"
-    - |
-      printf 'org.gradle.jvmargs=-Xmx2G -XX:MaxMetaspaceSize=256m -XX:ReservedCodeCacheSize=128m\norg.gradle.daemon=false\norg.gradle.parallel=false\nandroid.useAndroidX=true\n' > android/gradle.properties
     - gem install bundler -v "2.5.0" --no-document --quiet
     - bundle _2.5.0_ install --quiet
 
