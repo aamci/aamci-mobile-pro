@@ -78,7 +78,7 @@ platform :android do
   # Écrit gradle.properties avec des limites mémoire strictes (résiste à Flutter upgrade)
   private_lane :write_gradle_properties do
     File.write(File.join(FLUTTER_ROOT, "android", "gradle.properties"), <<~PROPS)
-      org.gradle.jvmargs=-Xmx1536m -XX:MaxMetaspaceSize=256m -XX:ReservedCodeCacheSize=128m
+      org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:ReservedCodeCacheSize=256m
       org.gradle.daemon=false
       org.gradle.parallel=false
       android.useAndroidX=true

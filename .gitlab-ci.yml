@@ -58,6 +58,7 @@ variables:
     - java -version
     - yes | sdkmanager --licenses > /dev/null 2>&1 || true
     - sdkmanager "ndk;28.2.13676358" "build-tools;35.0.0" "platforms;android-34" > /dev/null 2>&1
+    - mkdir -p ~/.gradle && printf 'org.gradle.daemon=false\norg.gradle.parallel=false\n' > ~/.gradle/gradle.properties
     - cd "$APP_DIR"
     - gem install bundler -v "2.5.0" --no-document --quiet
     - bundle _2.5.0_ install --quiet
