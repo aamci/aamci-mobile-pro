@@ -7,7 +7,7 @@ class AbsencesRemoteDatasource {
   AbsencesRemoteDatasource(this._apiClient);
 
   Future<List<dynamic>> getAbsences() async {
-    final response = await _apiClient.get(ApiEndpoints.doctorAbsences);
+    final response = await _apiClient.get('${ApiEndpoints.doctorAbsences}/mine');
     return response.data as List;
   }
 

@@ -55,9 +55,9 @@ class TermsScreen extends StatelessWidget {
           'Le traitement de vos données professionnelles est régi par notre Politique de confidentialité, accessible depuis ce menu. Les données médicales des patients sont conservées 10 ans conformément aux obligations légales.\n\nContact données : privacy@ibogha241.ga',
     ),
     _Section(
-      title: '11. Résiliation',
+      title: '11. Résiliation et suppression de compte',
       content:
-          'Vous pouvez résilier votre compte à tout moment depuis les paramètres. Ibogha se réserve le droit de suspendre ou résilier un compte professionnel en cas de violation des présentes CGU ou du Code de déontologie.',
+          'Vous pouvez supprimer votre compte à tout moment depuis les paramètres.\n\nAprès votre demande, votre compte est désactivé immédiatement. Vos données (profil, agenda, consultations, dossiers patients) sont conservées pendant 30 jours pour permettre le traitement d\'éventuelles obligations légales ou réclamations de patients. Au terme de ce délai, l\'ensemble de vos données est définitivement effacé.\n\nDurant ces 30 jours, vous pouvez contacter support@ibogha241.ga pour annuler la suppression. Passé ce délai, aucune restauration ne sera possible.\n\nIbogha se réserve le droit de suspendre ou résilier un compte professionnel en cas de violation des présentes CGU ou du Code de déontologie.',
     ),
     _Section(
       title: '12. Modifications et contact',

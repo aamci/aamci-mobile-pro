@@ -11,17 +11,27 @@ class AvailabilityRulesRemoteDatasource {
     return response.data as List;
   }
 
+  static int _parseHour(String h) {
+    final parts = h.split(':');
+    return int.parse(parts[0]);
+  }
+
   Future<Map<String, dynamic>> createRule({
     required List<int> daysOfWeek,
     required String startHour,
     required String endHour,
     required int slotDurationMins,
   }) async {
+    final now = DateTime.now();
+    final twoYearsLater = DateTime(now.year + 2, now.month, now.day);
     final response = await _apiClient.post(ApiEndpoints.availabilityRules, data: {
       'daysOfWeek': daysOfWeek,
-      'startHour': startHour,
-      'endHour': endHour,
+      'startHour': _parseHour(startHour),
+      'endHour': _parseHour(endHour),
       'slotDurationMins': slotDurationMins,
+      'capacity': 1,
+      'startDate': now.toIso8601String(),
+      'endDate': twoYearsLater.toIso8601String(),
     });
     return response.data as Map<String, dynamic>;
   }
@@ -34,11 +44,11 @@ class AvailabilityRulesRemoteDatasource {
   }) async {
     final data = <String, dynamic>{};
     if (daysOfWeek != null) data['daysOfWeek'] = daysOfWeek;
-    if (startHour != null) data['startHour'] = startHour;
-    if (endHour != null) data['endHour'] = endHour;
+    if (startHour != null) data['startHour'] = _parseHour(startHour);
+    if (endHour != null) data['endHour'] = _parseHour(endHour);
     if (slotDurationMins != null) data['slotDurationMins'] = slotDurationMins;
 
-    final response = await _apiClient.patch(ApiEndpoints.availabilityRuleById(id), data: data);
+    final response = await _apiClient.put(ApiEndpoints.availabilityRuleById(id), data: data);
     return response.data as Map<String, dynamic>;
   }
 

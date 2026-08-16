@@ -7,7 +7,7 @@ class ConsultationsRemoteDatasource {
   ConsultationsRemoteDatasource(this._apiClient);
 
   Future<List<dynamic>> getConsultations() async {
-    final response = await _apiClient.get(ApiEndpoints.consultations);
+    final response = await _apiClient.get('${ApiEndpoints.consultations}/mine');
     return response.data as List;
   }
 
