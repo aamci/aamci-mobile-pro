@@ -185,6 +185,13 @@ class ProfileScreen extends ConsumerWidget {
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
           ),
+          TextButton(
+            onPressed: () => context.push('/terms'),
+            child: const Text(
+              'Conditions générales d\'utilisation',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+          ),
           const SizedBox(height: 4),
           TextButton(
             onPressed: () => _confirmDeleteAccount(context, ref),

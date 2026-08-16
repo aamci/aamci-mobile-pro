@@ -33,6 +33,7 @@ import '../../features/teleconsultation/presentation/screens/teleconsultation_sc
 import '../../features/waitlist/presentation/screens/waitlist_screen.dart';
 import '../../features/questionnaires/presentation/screens/questionnaires_screen.dart';
 import '../../features/privacy/presentation/screens/privacy_screen.dart';
+import '../../features/privacy/presentation/screens/terms_screen.dart';
 import 'shell_scaffold.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -169,6 +170,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/privacy',
         builder: (context, state) => const PrivacyScreen(),
+      ),
+      GoRoute(
+        path: '/terms',
+        builder: (context, state) => const TermsScreen(),
       ),
       GoRoute(
         path: '/waitlist',
