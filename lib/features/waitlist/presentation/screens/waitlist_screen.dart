@@ -11,7 +11,7 @@ const _statusLabels = {
 };
 
 const _statusColors = {
-  'ACTIVE': Color(0xFF2563EB),
+  'ACTIVE': Color(0xFF0D9488),
   'NOTIFIED': Color(0xFFF59E0B),
   'BOOKED': Color(0xFF16A34A),
   'EXPIRED': Color(0xFF6B7280),

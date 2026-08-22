@@ -11,13 +11,13 @@ const _statusLabels = {
 };
 const _statusColors = {
   'TODO': Color(0xFF6B7280),
-  'IN_PROGRESS': Color(0xFF2563EB),
+  'IN_PROGRESS': Color(0xFF0D9488),
   'DONE': Color(0xFF16A34A),
   'CANCELLED': Color(0xFFDC2626),
 };
 const _priorityColors = {
   'LOW': Color(0xFF9CA3AF),
-  'MEDIUM': Color(0xFF2563EB),
+  'MEDIUM': Color(0xFF0D9488),
   'HIGH': Color(0xFFF97316),
   'URGENT': Color(0xFFDC2626),
 };
@@ -153,7 +153,7 @@ class _TasksScreenState extends ConsumerState<TasksScreen>
                     children: [
                       _StatChip(label: '${stats['todo'] ?? 0} à faire', color: const Color(0xFF6B7280)),
                       const SizedBox(width: 8),
-                      _StatChip(label: '${stats['inProgress'] ?? 0} en cours', color: const Color(0xFF2563EB)),
+                      _StatChip(label: '${stats['inProgress'] ?? 0} en cours', color: const Color(0xFF0D9488)),
                       const SizedBox(width: 8),
                       if ((stats['overdue'] ?? 0) > 0)
                         _StatChip(label: '${stats['overdue']} retard', color: const Color(0xFFDC2626)),

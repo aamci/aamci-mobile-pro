@@ -276,7 +276,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                       'politique de confidentialité',
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: Color(0xFF2563EB),
+                                        color: Color(0xFF0D9488),
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
@@ -290,7 +290,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                       'CGU',
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: Color(0xFF2563EB),
+                                        color: Color(0xFF0D9488),
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),

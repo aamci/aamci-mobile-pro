@@ -147,7 +147,7 @@ class NotificationsScreen extends ConsumerWidget {
       case 'PRESCRIPTION_EXPIRED':    return const Color(0xFFF97316);
       case 'TEAM_INVITATION':
       case 'TEAM_JOINED':             return const Color(0xFF4F46E5);
-      default:                        return const Color(0xFF2563EB);
+      default:                        return const Color(0xFF0D9488);
     }
   }
 
@@ -168,7 +168,7 @@ class NotificationsScreen extends ConsumerWidget {
         return {'label': 'Équipe', 'color': const Color(0xFF4F46E5)};
       default:
         if (type != null && type.startsWith('APPOINTMENT_')) {
-          return {'label': 'RDV', 'color': const Color(0xFF2563EB)};
+          return {'label': 'RDV', 'color': const Color(0xFF0D9488)};
         }
         return null;
     }

@@ -1,4 +1,4 @@
-package com.healthplatform.mobile_pro
+package com.ibogha.pro
 
 import io.flutter.embedding.android.FlutterActivity
 

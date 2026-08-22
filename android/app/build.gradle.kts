@@ -2,6 +2,7 @@ import java.util.Properties
 
 plugins {
     id("com.android.application")
+    id("org.jetbrains.kotlin.android")
     id("dev.flutter.flutter-gradle-plugin")
 }
 
@@ -13,9 +14,9 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.healthplatform.mobile_pro"
+    namespace = "com.ibogha.pro"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "28.2.13676358"
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

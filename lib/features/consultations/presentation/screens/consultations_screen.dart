@@ -14,12 +14,25 @@ class ConsultationsScreen extends ConsumerWidget {
       appBar: AppBar(title: const Text('Consultations')),
       body: consultationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(
+        error: (e, stack) => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Icon(Icons.error_outline, color: Colors.red, size: 48),
+              const SizedBox(height: 12),
               Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  e.toString(),
+                  style: const TextStyle(fontSize: 11, color: Colors.red),
+                  textAlign: TextAlign.center,
+                  maxLines: 6,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () => ref.invalidate(consultationsProvider),
                 child: const Text('Réessayer'),

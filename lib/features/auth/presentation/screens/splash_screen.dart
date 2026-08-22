@@ -54,7 +54,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF2563EB), Color(0xFF1D4ED8)],
+            colors: [Color(0xFF0D9488), Color(0xFF0F766E)],
           ),
         ),
         child: Center(
@@ -85,14 +85,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                         child: const Icon(
                           Icons.medical_services_rounded,
                           size: 56,
-                          color: Color(0xFF2563EB),
+                          color: Color(0xFF0D9488),
                         ),
                       ),
                       const SizedBox(height: 24),
                       const Text(
-                        'Health Pro',
+                        'Ibogha Pro',
                         style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           letterSpacing: 1.2,

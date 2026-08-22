@@ -9,6 +9,8 @@ import '../../features/auth/presentation/screens/reset_password_screen.dart';
 import '../../features/dashboard/presentation/screens/dashboard_screen.dart';
 import '../../features/planning/presentation/screens/planning_screen.dart';
 import '../../features/appointments/presentation/screens/appointments_screen.dart';
+import '../../features/appointments/presentation/screens/appointment_detail_screen.dart';
+import '../../features/appointments/data/models/appointment_model.dart';
 import '../../features/patients/presentation/screens/patients_screen.dart';
 import '../../features/patients/presentation/screens/patient_record_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
@@ -106,6 +108,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           return ConversationDetailScreen(
             conversationId: state.pathParameters['id']!,
             participantName: extra['name'] as String? ?? 'Conversation',
+            participantId: extra['participantId'] as String? ?? '',
           );
         },
       ),
@@ -182,6 +185,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/questionnaires',
         builder: (context, state) => const QuestionnairesScreen(),
+      ),
+      GoRoute(
+        path: '/appointments/:id',
+        builder: (context, state) {
+          final appointment = state.extra as AppointmentModel;
+          return AppointmentDetailScreen(appointment: appointment);
+        },
       ),
       GoRoute(
         path: '/teleconsultation/:appointmentId',

@@ -147,7 +147,7 @@ class _AppointmentCard extends StatelessWidget {
       case 'CANCELLED':
         return const Color(0xFFEF4444);
       case 'COMPLETED':
-        return const Color(0xFF2563EB);
+        return const Color(0xFF0D9488);
       case 'NO_SHOW':
         return const Color(0xFF9333EA);
       default:
@@ -168,7 +168,10 @@ class _AppointmentCard extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
-      child: Padding(
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
+        onTap: () => context.push('/appointments/${appointment.id}', extra: appointment),
+        child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,11 +180,11 @@ class _AppointmentCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 20,
-                  backgroundColor: const Color(0xFF2563EB).withValues(alpha: 0.1),
+                  backgroundColor: const Color(0xFF0D9488).withValues(alpha: 0.1),
                   child: Text(
                     (patient?.fullName ?? '?').substring(0, 1).toUpperCase(),
                     style: const TextStyle(
-                      color: Color(0xFF2563EB),
+                      color: Color(0xFF0D9488),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -296,6 +299,7 @@ class _AppointmentCard extends StatelessWidget {
             ],
           ],
         ),
+      ),
       ),
     );
   }

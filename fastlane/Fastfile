@@ -30,30 +30,28 @@ platform :android do
       sh("flutter build appbundle --release --build-number=#{build_number}")
     end
     json_key = ENV["GOOGLE_PLAY_JSON_KEY"]
-    if json_key.nil? || json_key.empty?
-      UI.important("GOOGLE_PLAY_JSON_KEY non définie — build produit mais non uploadé.")
-    else
-      is_file = File.exist?(json_key.strip)
-      unless is_file
-        require 'json'
-        begin
-          JSON.parse(json_key)
-        rescue JSON::ParserError
-          UI.important("GOOGLE_PLAY_JSON_KEY n'est pas un JSON valide — vérifiez la variable GitLab. Build produit mais non uploadé.")
-          next
-        end
+    UI.user_error!("GOOGLE_PLAY_JSON_KEY (GOOGLE_PLAY_PRO_JSON_KEY) n'est pas définie dans les variables GitLab CI.") if json_key.nil? || json_key.empty?
+
+    is_file = File.exist?(json_key.strip)
+    unless is_file
+      require 'json'
+      begin
+        JSON.parse(json_key)
+      rescue JSON::ParserError
+        UI.user_error!("GOOGLE_PLAY_JSON_KEY n'est pas un JSON valide ni un chemin de fichier existant.")
       end
-      upload_to_play_store(
-        track:                   "internal",
-        aab:                     "#{FLUTTER_ROOT}/build/app/outputs/bundle/release/app-release.aab",
-        json_key:                is_file ? json_key.strip : nil,
-        json_key_data:           is_file ? nil : json_key,
-        skip_upload_screenshots: true,
-        skip_upload_images:      true,
-        skip_upload_metadata:    true,
-        release_status:          "completed"
-      )
     end
+
+    upload_to_play_store(
+      track:                   "internal",
+      aab:                     "#{FLUTTER_ROOT}/build/app/outputs/bundle/release/app-release.aab",
+      json_key:                is_file ? json_key.strip : nil,
+      json_key_data:           is_file ? nil : json_key,
+      skip_upload_screenshots: true,
+      skip_upload_images:      true,
+      skip_upload_metadata:    true,
+      release_status:          "completed"
+    )
   end
 
   desc "Build AAB + déploiement Google Play (production)"
@@ -128,6 +126,7 @@ platform :ios do
     Dir.chdir(FLUTTER_ROOT) do
       sh("flutter build ipa --release --build-number=#{build_number} --export-options-plist=#{export_plist}")
     end
+    strip_simulator_slices
     upload_to_testflight(
       ipa:                              Dir["#{FLUTTER_ROOT}/build/ios/ipa/*.ipa"].first,
       skip_waiting_for_build_processing: true,
@@ -144,6 +143,7 @@ platform :ios do
     Dir.chdir(FLUTTER_ROOT) do
       sh("flutter build ipa --release --build-number=#{build_number} --export-options-plist=#{export_plist}")
     end
+    strip_simulator_slices
     deliver(
       ipa:                Dir["#{FLUTTER_ROOT}/build/ios/ipa/*.ipa"].first,
       submit_for_review:  true,
@@ -152,6 +152,36 @@ platform :ios do
       skip_screenshots:   true,
       skip_metadata:      true
     )
+  end
+
+  private_lane :strip_simulator_slices do
+    ipa_path = Dir["#{FLUTTER_ROOT}/build/ios/ipa/*.ipa"].first
+    UI.user_error!("IPA introuvable dans build/ios/ipa/") unless ipa_path
+
+    tmp_dir = "#{FLUTTER_ROOT}/build/ios/ipa_strip_tmp"
+    sh("rm -rf '#{tmp_dir}' && mkdir -p '#{tmp_dir}'")
+    sh("cd '#{tmp_dir}' && unzip -q '#{ipa_path}'")
+
+    Dir["#{tmp_dir}/Payload/Runner.app/Frameworks/**/*.framework",
+        "#{tmp_dir}/Payload/Runner.app/Frameworks/**/*.dylib"].each do |fw|
+      binary = File.directory?(fw) ? "#{fw}/#{File.basename(fw, '.framework')}" : fw
+      next unless File.exist?(binary)
+
+      build_info = `xcrun vtool -show-build '#{binary}' 2>/dev/null`
+      next unless build_info.include?("IPHONE_SIMULATOR") || build_info =~ /platform\s+7\b/i
+
+      UI.message("Suppression platform iOS Simulator de : #{File.basename(binary)}")
+      sh("xcrun vtool -remove-build-version 7 -output '#{binary}' '#{binary}' 2>/dev/null || true")
+
+      identity = ENV["EXPANDED_CODE_SIGN_IDENTITY"] || "-"
+      sh("codesign --force --sign '#{identity}' '#{binary}' 2>/dev/null || true")
+    end
+
+    stripped_ipa = ipa_path.sub(".ipa", "-stripped.ipa")
+    sh("cd '#{tmp_dir}' && zip -qr '#{stripped_ipa}' Payload")
+    sh("mv '#{stripped_ipa}' '#{ipa_path}'")
+    sh("rm -rf '#{tmp_dir}'")
+    UI.success("IPA strippée : #{File.basename(ipa_path)}")
   end
 
   private_lane :setup_asc_api_key do

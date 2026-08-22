@@ -76,18 +76,18 @@ class TermsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF2563EB).withValues(alpha: 0.07),
+              color: const Color(0xFF0D9488).withValues(alpha: 0.07),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFF2563EB).withValues(alpha: 0.25)),
+              border: Border.all(color: const Color(0xFF0D9488).withValues(alpha: 0.25)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Acceptation des conditions', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2563EB))),
+                const Text('Acceptation des conditions', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF0D9488))),
                 const SizedBox(height: 4),
                 const Text(
                   'En utilisant Ibogha Pro, vous acceptez les présentes conditions générales dans leur intégralité.',
-                  style: TextStyle(fontSize: 13, color: Color(0xFF1E40AF)),
+                  style: TextStyle(fontSize: 13, color: Color(0xFF0F766E)),
                 ),
                 const SizedBox(height: 8),
                 Text(

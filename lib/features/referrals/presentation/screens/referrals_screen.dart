@@ -5,7 +5,7 @@ import '../providers/referrals_provider.dart';
 
 const _urgencyColors = {
   'LOW': Color(0xFF6B7280),
-  'NORMAL': Color(0xFF2563EB),
+  'NORMAL': Color(0xFF0D9488),
   'HIGH': Color(0xFFF97316),
   'URGENT': Color(0xFFDC2626),
 };
@@ -371,10 +371,10 @@ class _SentTab extends ConsumerWidget {
                     children: [
                       CircleAvatar(
                         radius: 18,
-                        backgroundColor: const Color(0xFF2563EB).withValues(alpha: 0.1),
+                        backgroundColor: const Color(0xFF0D9488).withValues(alpha: 0.1),
                         child: Text(
                           (patient?['fullName'] ?? '?').substring(0, 1).toUpperCase(),
-                          style: const TextStyle(color: Color(0xFF2563EB), fontWeight: FontWeight.bold),
+                          style: const TextStyle(color: Color(0xFF0D9488), fontWeight: FontWeight.bold),
                         ),
                       ),
                       const SizedBox(width: 10),

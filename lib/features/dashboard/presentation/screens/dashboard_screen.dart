@@ -27,25 +27,75 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     final userName = authState.user?.fullName ?? 'Docteur';
     final stats = dashboard.stats;
 
+    final rawDate = DateFormat('EEEE d MMMM', 'fr_FR').format(DateTime.now());
+    final dateStr = rawDate[0].toUpperCase() + rawDate.substring(1);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tableau de bord'),
-      ),
       body: RefreshIndicator(
         onRefresh: () => ref.read(dashboardProvider.notifier).load(),
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Bonjour, Dr. $userName',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFF0D9488), Color(0xFF0F766E)],
+                  ),
+                ),
+                child: SafeArea(
+                  bottom: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Bonjour, Dr. $userName',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              dateStr,
+                              style: TextStyle(
+                                color: Colors.white.withValues(alpha: 0.8),
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.notifications_outlined, color: Colors.white, size: 22),
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
                     ),
+                  ),
+                ),
               ),
-              const SizedBox(height: 24),
+              Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 8),
 
               if (dashboard.isLoading && stats == null)
                 const Center(child: CircularProgressIndicator())
@@ -57,7 +107,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                         icon: Icons.calendar_today,
                         label: 'RDV à venir',
                         value: '${stats?.upcomingAppointments ?? 0}',
-                        color: const Color(0xFF2563EB),
+                        color: const Color(0xFF0D9488),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -120,7 +170,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     _QuickAction(
                       icon: Icons.chat_bubble_outline,
                       label: 'Messages',
-                      color: const Color(0xFF2563EB),
+                      color: const Color(0xFF0D9488),
                       onTap: () => context.push('/messages'),
                     ),
                   ],
@@ -170,6 +220,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               ],
             ],
           ),
+        ),
+      ],
+    ),
         ),
       ),
     );
@@ -277,11 +330,11 @@ class _NextAppointmentCard extends StatelessWidget {
             CircleAvatar(
               backgroundColor: _isVisio
                   ? const Color(0xFF7C3AED).withValues(alpha: 0.1)
-                  : const Color(0xFF2563EB).withValues(alpha: 0.1),
+                  : const Color(0xFF0D9488).withValues(alpha: 0.1),
               child: Text(
                 (apt.patientName ?? '?').substring(0, 1).toUpperCase(),
                 style: TextStyle(
-                  color: _isVisio ? const Color(0xFF7C3AED) : const Color(0xFF2563EB),
+                  color: _isVisio ? const Color(0xFF7C3AED) : const Color(0xFF0D9488),
                   fontWeight: FontWeight.bold,
                 ),
               ),
