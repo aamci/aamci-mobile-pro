@@ -19,4 +19,11 @@ class AppointmentsRemoteDatasource {
       data: {'status': status},
     );
   }
+
+  Future<void> reschedule(String id, DateTime newStart) async {
+    await _apiClient.patch(
+      ApiEndpoints.rescheduleAppointment(id),
+      data: {'newStart': newStart.toUtc().toIso8601String()},
+    );
+  }
 }

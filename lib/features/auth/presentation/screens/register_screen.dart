@@ -85,7 +85,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 Icon(Icons.medical_services_rounded, size: 52, color: primary),
                 const SizedBox(height: 12),
                 Text(
-                  'Health Platform Pro',
+                  'Ibogha241 Pro',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: primary,

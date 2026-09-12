@@ -36,6 +36,8 @@ import '../../features/waitlist/presentation/screens/waitlist_screen.dart';
 import '../../features/questionnaires/presentation/screens/questionnaires_screen.dart';
 import '../../features/privacy/presentation/screens/privacy_screen.dart';
 import '../../features/privacy/presentation/screens/terms_screen.dart';
+import '../../features/profile/presentation/screens/edit_profile_screen.dart';
+import '../../features/profile/presentation/screens/change_password_screen.dart';
 import 'shell_scaffold.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -169,6 +171,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/referrals',
         builder: (context, state) => const ReferralsScreen(),
+      ),
+      GoRoute(
+        path: '/edit-profile',
+        builder: (context, state) => const EditProfileScreen(),
+      ),
+      GoRoute(
+        path: '/change-password',
+        builder: (context, state) => const ChangePasswordScreen(),
       ),
       GoRoute(
         path: '/privacy',

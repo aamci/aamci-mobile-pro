@@ -55,6 +55,16 @@ class AppointmentsNotifier extends StateNotifier<AppointmentsState> {
       return false;
     }
   }
+
+  Future<bool> reschedule(String id, DateTime newStart) async {
+    try {
+      await _datasource.reschedule(id, newStart);
+      await load();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }
 
 final appointmentsProvider =

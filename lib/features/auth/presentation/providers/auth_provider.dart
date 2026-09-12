@@ -136,6 +136,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  Future<void> refreshUser() async {
+    try {
+      final user = await _datasource.getCurrentUser();
+      state = state.copyWith(user: user);
+    } catch (_) {}
+  }
+
   Future<bool> resendVerification(String email) async {
     try {
       await _datasource.resendVerification(email);

@@ -7,17 +7,17 @@ class TermsScreen extends StatelessWidget {
     _Section(
       title: '1. Présentation du service',
       content:
-          'Ibogha Pro est la plateforme professionnelle d\'Ibogha Health permettant aux professionnels de santé de gérer leur agenda, leurs rendez-vous, leur dossier patient, leurs consultations vidéo, leur portefeuille et leur correspondance médicale.',
+          'Ibogha241 Pro est la plateforme professionnelle d\'Ibogha241 Health permettant aux professionnels de santé de gérer leur agenda, leurs rendez-vous, leur dossier patient, leurs consultations vidéo, leur portefeuille et leur correspondance médicale.',
     ),
     _Section(
       title: '2. Accès au service',
       content:
-          'L\'accès à Ibogha Pro est réservé aux professionnels de santé dûment enregistrés. Vous êtes responsable de l\'exactitude des informations professionnelles fournies (RPPS, spécialité, établissements).\n\nVous êtes seul responsable de la confidentialité de vos identifiants de connexion.',
+          'L\'accès à Ibogha241 Pro est réservé aux professionnels de santé dûment enregistrés. Vous êtes responsable de l\'exactitude des informations professionnelles fournies (RPPS, spécialité, établissements).\n\nVous êtes seul responsable de la confidentialité de vos identifiants de connexion.',
     ),
     _Section(
       title: '3. Obligations du professionnel',
       content:
-          'En utilisant Ibogha Pro, vous vous engagez à :\n• Respecter le Code de déontologie médicale applicable\n• Fournir des informations professionnelles exactes et à jour\n• Assurer la confidentialité des données patients\n• Traiter les demandes de rendez-vous de façon diligente\n• Ne pas utiliser le service à des fins contraires à l\'éthique médicale',
+          'En utilisant Ibogha241 Pro, vous vous engagez à :\n• Respecter le Code de déontologie médicale applicable\n• Fournir des informations professionnelles exactes et à jour\n• Assurer la confidentialité des données patients\n• Traiter les demandes de rendez-vous de façon diligente\n• Ne pas utiliser le service à des fins contraires à l\'éthique médicale',
     ),
     _Section(
       title: '4. Gestion des rendez-vous',
@@ -37,17 +37,17 @@ class TermsScreen extends StatelessWidget {
     _Section(
       title: '7. Paiements et portefeuille',
       content:
-          'Les honoraires collectés via la plateforme sont crédités sur votre portefeuille Ibogha. Les virements sont effectués selon les modalités définies dans votre contrat de service.\n\nIbogha peut prélever une commission de service sur les transactions réalisées via la plateforme.',
+          'Les honoraires collectés via la plateforme sont crédités sur votre portefeuille Ibogha241. Les virements sont effectués selon les modalités définies dans votre contrat de service.\n\nIbogha241 peut prélever une commission de service sur les transactions réalisées via la plateforme.',
     ),
     _Section(
       title: '8. Propriété intellectuelle',
       content:
-          'L\'ensemble du contenu d\'Ibogha Pro (interface, algorithmes, composants) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou adaptation sans autorisation écrite est interdite.',
+          'L\'ensemble du contenu d\'Ibogha241 Pro (interface, algorithmes, composants) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou adaptation sans autorisation écrite est interdite.',
     ),
     _Section(
       title: '9. Limitation de responsabilité',
       content:
-          'Ibogha agit en tant qu\'intermédiaire technique et ne peut être tenu responsable :\n• Des actes médicaux réalisés via la plateforme\n• Des interruptions liées à des maintenances techniques\n• Des dommages indirects résultant de l\'utilisation du service',
+          'Ibogha241 agit en tant qu\'intermédiaire technique et ne peut être tenu responsable :\n• Des actes médicaux réalisés via la plateforme\n• Des interruptions liées à des maintenances techniques\n• Des dommages indirects résultant de l\'utilisation du service',
     ),
     _Section(
       title: '10. Données personnelles',
@@ -57,12 +57,12 @@ class TermsScreen extends StatelessWidget {
     _Section(
       title: '11. Résiliation et suppression de compte',
       content:
-          'Vous pouvez supprimer votre compte à tout moment depuis les paramètres.\n\nAprès votre demande, votre compte est désactivé immédiatement. Vos données (profil, agenda, consultations, dossiers patients) sont conservées pendant 30 jours pour permettre le traitement d\'éventuelles obligations légales ou réclamations de patients. Au terme de ce délai, l\'ensemble de vos données est définitivement effacé.\n\nDurant ces 30 jours, vous pouvez contacter support@ibogha241.ga pour annuler la suppression. Passé ce délai, aucune restauration ne sera possible.\n\nIbogha se réserve le droit de suspendre ou résilier un compte professionnel en cas de violation des présentes CGU ou du Code de déontologie.',
+          'Vous pouvez supprimer votre compte à tout moment depuis les paramètres.\n\nAprès votre demande, votre compte est désactivé immédiatement. Vos données (profil, agenda, consultations, dossiers patients) sont conservées pendant 30 jours pour permettre le traitement d\'éventuelles obligations légales ou réclamations de patients. Au terme de ce délai, l\'ensemble de vos données est définitivement effacé.\n\nDurant ces 30 jours, vous pouvez contacter support@ibogha241.ga pour annuler la suppression. Passé ce délai, aucune restauration ne sera possible.\n\nIbogha241 se réserve le droit de suspendre ou résilier un compte professionnel en cas de violation des présentes CGU ou du Code de déontologie.',
     ),
     _Section(
       title: '12. Modifications et contact',
       content:
-          'Ibogha peut modifier ces conditions et vous informera 30 jours avant toute modification substantielle.\n\nSupport : support@ibogha241.ga\nDonnées : privacy@ibogha241.ga',
+          'Ibogha241 peut modifier ces conditions et vous informera 30 jours avant toute modification substantielle.\n\nSupport : support@ibogha241.ga\nDonnées : privacy@ibogha241.ga',
     ),
   ];
 
@@ -86,7 +86,7 @@ class TermsScreen extends StatelessWidget {
                 const Text('Acceptation des conditions', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF0D9488))),
                 const SizedBox(height: 4),
                 const Text(
-                  'En utilisant Ibogha Pro, vous acceptez les présentes conditions générales dans leur intégralité.',
+                  'En utilisant Ibogha241 Pro, vous acceptez les présentes conditions générales dans leur intégralité.',
                   style: TextStyle(fontSize: 13, color: Color(0xFF0F766E)),
                 ),
                 const SizedBox(height: 8),

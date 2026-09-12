@@ -32,7 +32,10 @@ class ProfileScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'Dr. ${user?.fullName ?? 'Médecin'}',
+            () {
+              final n = user?.fullName ?? 'Médecin';
+              return n.toLowerCase().startsWith('dr') ? n : 'Dr. $n';
+            }(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -60,6 +63,13 @@ class ProfileScreen extends ConsumerWidget {
           Card(
             child: Column(
               children: [
+                ListTile(
+                  leading: const Icon(Icons.edit_outlined),
+                  title: const Text('Modifier le profil'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/edit-profile'),
+                ),
+                const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.chat_bubble_outline),
                   title: const Text('Messages'),
@@ -162,7 +172,7 @@ class ProfileScreen extends ConsumerWidget {
                   leading: const Icon(Icons.lock_outline),
                   title: const Text('Changer le mot de passe'),
                   trailing: const Icon(Icons.chevron_right),
-                  onTap: () {},
+                  onTap: () => context.push('/change-password'),
                 ),
               ],
             ),

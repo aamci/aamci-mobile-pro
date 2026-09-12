@@ -24,7 +24,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
     final dashboard = ref.watch(dashboardProvider);
-    final userName = authState.user?.fullName ?? 'Docteur';
+    final rawName = authState.user?.fullName ?? 'Docteur';
+    final userName = rawName.toLowerCase().startsWith('dr') ? rawName : 'Dr. $rawName';
     final stats = dashboard.stats;
 
     final rawDate = DateFormat('EEEE d MMMM', 'fr_FR').format(DateTime.now());
@@ -58,7 +59,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Bonjour, Dr. $userName',
+                              'Bonjour, $userName',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,

@@ -7,7 +7,7 @@ class PrivacyScreen extends StatelessWidget {
     _Section(
       title: '1. Responsable du traitement',
       content:
-          'Ibogha Health, société de droit gabonais, est responsable du traitement des données personnelles collectées via cette plateforme professionnelle de santé.',
+          'Ibogha241 Health, société de droit gabonais, est responsable du traitement des données personnelles collectées via cette plateforme professionnelle de santé.',
     ),
     _Section(
       title: '2. Données collectées',

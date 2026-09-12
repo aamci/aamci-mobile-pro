@@ -35,6 +35,7 @@ class ApiEndpoints {
   static const String appointments = '/appointments';
   static String appointmentById(String id) => '/appointments/$id';
   static String appointmentStatus(String id) => '/appointments/$id/status';
+  static String rescheduleAppointment(String id) => '/appointments/$id/reschedule';
 
   // Patients
   static const String patients = '/patients';

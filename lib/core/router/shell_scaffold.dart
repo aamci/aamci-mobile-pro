@@ -21,6 +21,7 @@ class ShellScaffold extends StatelessWidget {
     return Scaffold(
       body: child,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex(context),
         onTap: (index) {
           switch (index) {

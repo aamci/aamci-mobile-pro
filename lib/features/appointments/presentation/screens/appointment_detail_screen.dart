@@ -252,6 +252,21 @@ class AppointmentDetailScreen extends ConsumerWidget {
 
           const SizedBox(height: 12),
 
+          // Déplacer le rendez-vous
+          if (appointment.status == 'PENDING' || appointment.status == 'CONFIRMED')
+            OutlinedButton.icon(
+              onPressed: () => _showRescheduleSheet(context, ref),
+              icon: const Icon(Icons.schedule, size: 16),
+              label: const Text('Déplacer le rendez-vous'),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                foregroundColor: const Color(0xFFF59E0B),
+                side: const BorderSide(color: Color(0xFFF59E0B)),
+              ),
+            ),
+
+          const SizedBox(height: 12),
+
           // Voir dossier patient
           if (patient != null)
             OutlinedButton.icon(
@@ -267,6 +282,29 @@ class AppointmentDetailScreen extends ConsumerWidget {
     );
   }
 
+  Future<void> _showRescheduleSheet(BuildContext context, WidgetRef ref) async {
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) => _RescheduleSheet(
+        appointment: appointment,
+        onConfirm: (date, time) async {
+          final newStart = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+          final success = await ref.read(appointmentsProvider.notifier).reschedule(appointment.id, newStart);
+          if (!context.mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(success ? 'Rendez-vous déplacé' : 'Erreur lors du déplacement'),
+            backgroundColor: success ? const Color(0xFF22C55E) : const Color(0xFFEF4444),
+          ));
+          if (success) context.pop();
+        },
+      ),
+    );
+  }
+
   Future<void> _changeStatus(BuildContext context, WidgetRef ref, String newStatus) async {
     final success = await ref.read(appointmentsProvider.notifier).updateStatus(appointment.id, newStatus);
     if (!context.mounted) return;
@@ -275,6 +313,134 @@ class AppointmentDetailScreen extends ConsumerWidget {
       backgroundColor: success ? const Color(0xFF22C55E) : const Color(0xFFEF4444),
     ));
     if (success) context.pop();
+  }
+}
+
+class _RescheduleSheet extends StatefulWidget {
+  final AppointmentModel appointment;
+  final Future<void> Function(DateTime date, TimeOfDay time) onConfirm;
+
+  const _RescheduleSheet({required this.appointment, required this.onConfirm});
+
+  @override
+  State<_RescheduleSheet> createState() => _RescheduleSheetState();
+}
+
+class _RescheduleSheetState extends State<_RescheduleSheet> {
+  DateTime? _selectedDate;
+  TimeOfDay? _selectedTime;
+  bool _loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final slot = widget.appointment.slot;
+    if (slot != null) {
+      _selectedDate = slot.start;
+      _selectedTime = TimeOfDay.fromDateTime(slot.start);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final dateLabel = _selectedDate != null
+        ? DateFormat('EEEE d MMMM yyyy', 'fr_FR').format(_selectedDate!)
+        : 'Choisir une date';
+    final timeLabel = _selectedTime != null
+        ? _selectedTime!.format(context)
+        : 'Choisir une heure';
+
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 24,
+        right: 24,
+        top: 24,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Déplacer le rendez-vous',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Choisissez une nouvelle date et heure',
+            style: TextStyle(color: Colors.grey[600], fontSize: 14),
+          ),
+          const SizedBox(height: 24),
+          OutlinedButton.icon(
+            onPressed: () async {
+              final now = DateTime.now();
+              final picked = await showDatePicker(
+                context: context,
+                initialDate: _selectedDate ?? now,
+                firstDate: now,
+                lastDate: now.add(const Duration(days: 365)),
+                locale: const Locale('fr', 'FR'),
+              );
+              if (picked != null) setState(() => _selectedDate = picked);
+            },
+            icon: const Icon(Icons.calendar_today, size: 18),
+            label: Text(dateLabel),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size(double.infinity, 48),
+              alignment: Alignment.centerLeft,
+            ),
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: () async {
+              final picked = await showTimePicker(
+                context: context,
+                initialTime: _selectedTime ?? const TimeOfDay(hour: 9, minute: 0),
+                builder: (ctx, child) => MediaQuery(
+                  data: MediaQuery.of(ctx).copyWith(alwaysUse24HourFormat: true),
+                  child: child!,
+                ),
+              );
+              if (picked != null) setState(() => _selectedTime = picked);
+            },
+            icon: const Icon(Icons.access_time, size: 18),
+            label: Text(timeLabel),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size(double.infinity, 48),
+              alignment: Alignment.centerLeft,
+            ),
+          ),
+          const SizedBox(height: 24),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: (_selectedDate == null || _selectedTime == null || _loading)
+                  ? null
+                  : () async {
+                      final nav = Navigator.of(context);
+                      setState(() => _loading = true);
+                      await widget.onConfirm(_selectedDate!, _selectedTime!);
+                      if (!mounted) return;
+                      setState(() => _loading = false);
+                      nav.pop();
+                    },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF0D9488),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+              child: _loading
+                  ? const SizedBox(
+                      height: 20, width: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                    )
+                  : const Text('Confirmer le déplacement', style: TextStyle(fontWeight: FontWeight.w600)),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

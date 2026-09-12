@@ -30,7 +30,7 @@ class HealthProApp extends ConsumerWidget {
     }
 
     return MaterialApp.router(
-      title: 'Health Platform Pro',
+      title: 'Ibogha241 Pro',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       routerConfig: router,

@@ -90,7 +90,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                       ),
                       const SizedBox(height: 24),
                       const Text(
-                        'Ibogha Pro',
+                        'Ibogha241 Pro',
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
