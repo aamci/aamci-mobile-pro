@@ -540,7 +540,7 @@ class _TeleconsultationScreenState extends ConsumerState<TeleconsultationScreen>
             : _cameraReady && _cameraController != null
                 ? Transform(
                     alignment: Alignment.center,
-                    transform: Matrix4.identity()..scale(-1.0, 1.0),
+                    transform: Matrix4.diagonal3Values(-1.0, 1.0, 1.0),
                     child: CameraPreview(_cameraController!),
                   )
                 : Container(

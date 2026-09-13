@@ -1,10 +1,34 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../features/notifications/presentation/providers/notifications_provider.dart';
 
-class ShellScaffold extends StatelessWidget {
+class ShellScaffold extends ConsumerStatefulWidget {
   final Widget child;
 
   const ShellScaffold({super.key, required this.child});
+
+  @override
+  ConsumerState<ShellScaffold> createState() => _ShellScaffoldState();
+}
+
+class _ShellScaffoldState extends ConsumerState<ShellScaffold> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 30), (_) {
+      ref.invalidate(unreadNotifCountProvider);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   int _currentIndex(BuildContext context) {
     final location = GoRouterState.of(context).matchedLocation;
@@ -19,51 +43,57 @@ class ShellScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex(context),
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              context.go('/dashboard');
-            case 1:
-              context.go('/planning');
-            case 2:
-              context.go('/appointments');
-            case 3:
-              context.go('/patients');
-            case 4:
-              context.go('/profile');
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_outlined),
-            activeIcon: Icon(Icons.dashboard),
-            label: 'Tableau',
+      body: widget.child,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(color: Colors.grey.shade100, width: 1),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_outlined),
-            activeIcon: Icon(Icons.calendar_month),
-            label: 'Planning',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event_note_outlined),
-            activeIcon: Icon(Icons.event_note),
-            label: 'RDV',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people_outline),
-            activeIcon: Icon(Icons.people),
-            label: 'Patients',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ],
+        ),
+        child: NavigationBar(
+          selectedIndex: _currentIndex(context),
+          onDestinationSelected: (index) {
+            switch (index) {
+              case 0:
+                context.go('/dashboard');
+              case 1:
+                context.go('/planning');
+              case 2:
+                context.go('/appointments');
+              case 3:
+                context.go('/patients');
+              case 4:
+                context.go('/profile');
+            }
+          },
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.grid_view_outlined),
+              selectedIcon: Icon(Icons.grid_view_rounded),
+              label: 'Tableau',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.calendar_month_outlined),
+              selectedIcon: Icon(Icons.calendar_month_rounded),
+              label: 'Planning',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.event_note_outlined),
+              selectedIcon: Icon(Icons.event_note_rounded),
+              label: 'RDV',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.people_outline_rounded),
+              selectedIcon: Icon(Icons.people_rounded),
+              label: 'Patients',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.person_outline_rounded),
+              selectedIcon: Icon(Icons.person_rounded),
+              label: 'Profil',
+            ),
+          ],
+        ),
       ),
     );
   }

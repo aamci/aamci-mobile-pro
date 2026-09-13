@@ -131,7 +131,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
         label: 'Rendez-vous',
         value: '${dashboard['totalAppointments'] ?? 0}',
         icon: Icons.calendar_today,
-        color: Colors.blue,
+        color: const Color(0xFF16A34A),
       ),
       _KpiData(
         label: 'Revenus',

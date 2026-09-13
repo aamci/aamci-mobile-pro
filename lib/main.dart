@@ -33,6 +33,8 @@ class HealthProApp extends ConsumerWidget {
       title: 'Ibogha241 Pro',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
       routerConfig: router,
     );
   }

@@ -291,7 +291,7 @@ class _ActionsSheetState extends ConsumerState<_ActionsSheet> {
             const Text('Motif du signalement', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
-              value: _reason.isEmpty ? null : _reason,
+              initialValue: _reason.isEmpty ? null : _reason,
               hint: const Text('Choisir un motif'),
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),

@@ -371,7 +371,7 @@ class _MedicalTab extends StatelessWidget {
 
   static const _categories = <String, (String, IconData, Color)>{
     'ALLERGY': ('Allergies', Icons.warning_amber, Colors.red),
-    'MEDICAL': ('Antécédents médicaux', Icons.medical_information, Colors.blue),
+    'MEDICAL': ('Antécédents médicaux', Icons.medical_information, const Color(0xFF16A34A)),
     'CARDIOVASCULAR': (
       'Cardiovasculaire',
       Icons.favorite,
@@ -642,7 +642,7 @@ class _ConstantesTab extends StatelessWidget {
                         size: 18,
                         color: isAbnormal
                             ? Colors.red[400]
-                            : Colors.blue[300]),
+                            : const Color(0xFF86EFAC)),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Column(
@@ -867,7 +867,7 @@ class _HistoriqueTab extends StatelessWidget {
                 child: ListTile(
                   dense: true,
                   leading:
-                      Icon(Icons.event, color: Colors.blue[400], size: 20),
+                      Icon(Icons.event, color: const Color(0xFF4ADE80), size: 20),
                   title: Text(
                       apt['appointmentKind']?['name'] ?? 'Consultation',
                       style: const TextStyle(
@@ -1053,7 +1053,7 @@ class _StatusChip extends StatelessWidget {
       'CONFIRMED' => ('Confirmé', Colors.green),
       'PENDING' => ('En attente', Colors.orange),
       'CANCELLED' => ('Annulé', Colors.red),
-      'COMPLETED' => ('Terminé', Colors.blue),
+      'COMPLETED' => ('Terminé', const Color(0xFF16A34A)),
       _ => (status ?? '', Colors.grey),
     };
     return Container(

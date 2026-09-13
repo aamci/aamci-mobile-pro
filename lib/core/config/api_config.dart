@@ -1,5 +1,3 @@
-import 'dart:io' show Platform;
-
 class ApiConfig {
   // Android emulator reaches the host machine via 10.0.2.2
   // iOS simulator reaches it via localhost
