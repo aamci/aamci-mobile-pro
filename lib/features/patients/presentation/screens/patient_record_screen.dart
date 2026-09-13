@@ -371,7 +371,7 @@ class _MedicalTab extends StatelessWidget {
 
   static const _categories = <String, (String, IconData, Color)>{
     'ALLERGY': ('Allergies', Icons.warning_amber, Colors.red),
-    'MEDICAL': ('Antécédents médicaux', Icons.medical_information, const Color(0xFF16A34A)),
+    'MEDICAL': ('Antécédents médicaux', Icons.medical_information, Color(0xFF16A34A)),
     'CARDIOVASCULAR': (
       'Cardiovasculaire',
       Icons.favorite,

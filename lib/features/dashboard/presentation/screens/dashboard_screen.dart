@@ -35,7 +35,6 @@ class DashboardScreen extends ConsumerStatefulWidget {
 
 class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   static const _primary = Color(0xFF16A34A);
-  static const _primaryLight = Color(0xFF3B82F6);
 
   @override
   void initState() {

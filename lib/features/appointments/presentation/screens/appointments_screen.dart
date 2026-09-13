@@ -150,7 +150,6 @@ class _CalendarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final selectedLabel = DateFormat('EEEE d MMMM', 'fr_FR').format(selectedDay);
     final labelCap = selectedLabel[0].toUpperCase() + selectedLabel.substring(1);
 
