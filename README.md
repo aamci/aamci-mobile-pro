@@ -36,6 +36,8 @@ Application Flutter (Dart) ciblant Android et iOS. Authentification JWT avec sup
 | permission_handler | 11.x | Système | Gestion des permissions runtime (caméra, micro) |
 | flutter_launcher_icons | 0.14.x | Dev | Génération automatique des icônes d'application |
 | flutter_native_splash | 2.4.x | Dev | Génération de l'écran de démarrage natif |
+| google_fonts | 6.2.x | UI | Polices Google téléchargées et mises en cache dynamiquement |
+| flutter_animate | 4.5.x | UI | Animations déclaratives fluides (fadeIn, slideY, etc.) |
 <!-- STACK:END -->
 
 ---
