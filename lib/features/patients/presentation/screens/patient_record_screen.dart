@@ -172,17 +172,17 @@ class _PatientHeader extends StatelessWidget {
                   spacing: 6,
                   runSpacing: 4,
                   children: [
-                    if (age != null) _chip('$age ans'),
+                    if (age != null) _chip('$age ans', ctx: context),
                     if (sex != null)
                       _chip(sex == 'MALE'
                           ? 'Homme'
                           : sex == 'FEMALE'
                               ? 'Femme'
-                              : sex),
+                              : sex, ctx: context),
                     if (bloodGroup != null)
-                      _chip('Gr. $bloodGroup', color: Colors.red[300]),
-                    if (heightCm != null) _chip('${heightCm}cm'),
-                    if (weightKg != null) _chip('${weightKg}kg'),
+                      _chip('Gr. $bloodGroup', color: Colors.red[300], ctx: context),
+                    if (heightCm != null) _chip('${heightCm}cm', ctx: context),
+                    if (weightKg != null) _chip('${weightKg}kg', ctx: context),
                   ],
                 ),
               ],
@@ -193,17 +193,17 @@ class _PatientHeader extends StatelessWidget {
     );
   }
 
-  Widget _chip(String label, {Color? color}) {
+  Widget _chip(String label, {Color? color, required BuildContext ctx}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: (color ?? Theme.of(context).colorScheme.onSurfaceVariant)!.withValues(alpha: 0.15),
+        color: (color ?? Theme.of(ctx).colorScheme.onSurfaceVariant).withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(label,
           style: TextStyle(
               fontSize: 11,
-              color: color ?? Theme.of(context).colorScheme.onSurfaceVariant,
+              color: color ?? Theme.of(ctx).colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500)),
     );
   }

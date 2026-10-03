@@ -588,7 +588,7 @@ class _FilterChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).colorScheme.onSurfaceVariant!),
+          border: Border.all(color: Theme.of(context).colorScheme.onSurfaceVariant),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -833,7 +833,7 @@ class _ScopeButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           border: Border.all(
-            color: selected ? const Color(0xFF0D9488) : Theme.of(context).colorScheme.onSurfaceVariant!,
+            color: selected ? const Color(0xFF0D9488) : Theme.of(context).colorScheme.onSurfaceVariant,
             width: selected ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(8),
