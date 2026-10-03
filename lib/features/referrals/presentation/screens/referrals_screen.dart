@@ -186,7 +186,7 @@ class _ReceivedCard extends ConsumerWidget {
                       if (fromDoctor != null)
                         Text(
                           'De : Dr ${fromDoctor['fullName'] ?? ''}',
-                          style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12),
                         ),
                     ],
                   ),
@@ -202,7 +202,7 @@ class _ReceivedCard extends ConsumerWidget {
                 if (referral['createdAt'] != null)
                   Text(
                     DateFormat('d MMM yyyy', 'fr_FR').format(DateTime.parse(referral['createdAt'])),
-                    style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                    style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   ),
               ],
             ),
@@ -224,12 +224,12 @@ class _ReceivedCard extends ConsumerWidget {
               const SizedBox(height: 6),
               Row(
                 children: [
-                  Icon(Icons.reply, size: 14, color: Colors.grey[500]),
+                  Icon(Icons.reply, size: 14, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
                       'Réponse : ${referral['response']}',
-                      style: TextStyle(fontSize: 12, color: Colors.grey[600], fontStyle: FontStyle.italic),
+                      style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant, fontStyle: FontStyle.italic),
                     ),
                   ),
                 ],
@@ -389,7 +389,7 @@ class _SentTab extends ConsumerWidget {
                             if (toDoctor != null)
                               Text(
                                 'Vers : Dr ${toDoctor['fullName'] ?? ''}',
-                                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                               ),
                           ],
                         ),
@@ -405,7 +405,7 @@ class _SentTab extends ConsumerWidget {
                       if (r['createdAt'] != null)
                         Text(
                           DateFormat('d MMM yyyy', 'fr_FR').format(DateTime.parse(r['createdAt'])),
-                          style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                          style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                         ),
                     ],
                   ),
@@ -499,7 +499,7 @@ class _ReceivedPatientsTab extends ConsumerWidget {
                   if (r['respondedAt'] != null)
                     Text(
                       'Accepté le ${DateFormat('d MMM yyyy', 'fr_FR').format(DateTime.parse(r['respondedAt']))}',
-                      style: TextStyle(fontSize: 11, color: Colors.grey[500]),
+                      style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant),
                     ),
                 ],
               ),

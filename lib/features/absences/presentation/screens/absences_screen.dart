@@ -36,15 +36,15 @@ class AbsencesScreen extends ConsumerWidget {
       body: state.isLoading
           ? const Center(child: CircularProgressIndicator())
           : state.error != null
-              ? Center(child: Text(state.error!, style: TextStyle(color: Colors.grey[600])))
+              ? Center(child: Text(state.error!, style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)))
               : state.absences.isEmpty
                   ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.event_busy, size: 64, color: Colors.grey[300]),
+                          Icon(Icons.event_busy, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                           const SizedBox(height: 16),
-                          Text('Aucune absence planifiée', style: TextStyle(color: Colors.grey[600])),
+                          Text('Aucune absence planifiée', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                         ],
                       ),
                     )
@@ -84,7 +84,7 @@ class AbsencesScreen extends ConsumerWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 4),
                                       child: Text(reason,
-                                          style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+                                          style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                                     ),
                                 ],
                               ),
@@ -167,7 +167,7 @@ class AbsencesScreen extends ConsumerWidget {
                   title: Text(
                     startDate != null ? displayFmt.format(startDate!) : 'Date de début *',
                     style: TextStyle(
-                      color: startDate == null ? Colors.grey[600] : null,
+                      color: startDate == null ? Theme.of(context).colorScheme.onSurfaceVariant : null,
                     ),
                   ),
                   trailing: const Icon(Icons.calendar_today, size: 18),
@@ -188,7 +188,7 @@ class AbsencesScreen extends ConsumerWidget {
                   title: Text(
                     endDate != null ? displayFmt.format(endDate!) : 'Date de fin *',
                     style: TextStyle(
-                      color: endDate == null ? Colors.grey[600] : null,
+                      color: endDate == null ? Theme.of(context).colorScheme.onSurfaceVariant : null,
                     ),
                   ),
                   trailing: const Icon(Icons.calendar_today, size: 18),

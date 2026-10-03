@@ -58,7 +58,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                 const SizedBox(height: 8),
                 Text(
                   'Entrez votre adresse e-mail. Si un compte existe, vous recevrez un lien de réinitialisation.',
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 32),
@@ -119,7 +119,7 @@ class _SuccessView extends StatelessWidget {
         const SizedBox(height: 12),
         Text(
           'Si un compte existe avec l\'adresse $email, vous recevrez un lien dans quelques minutes.\n\nVérifiez également vos spams.',
-          style: TextStyle(color: Colors.grey[600]),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),

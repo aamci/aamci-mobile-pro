@@ -79,7 +79,7 @@ class AppointmentDetailScreen extends ConsumerWidget {
                         style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                       ),
                       if (patient?.email != null)
-                        Text(patient!.email, style: TextStyle(color: Colors.grey[600], fontSize: 13)),
+                        Text(patient!.email, style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13)),
                     ],
                   ),
                 ),
@@ -368,7 +368,7 @@ class _RescheduleSheetState extends State<_RescheduleSheet> {
           const SizedBox(height: 6),
           Text(
             'Choisissez une nouvelle date et heure',
-            style: TextStyle(color: Colors.grey[600], fontSize: 14),
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 14),
           ),
           const SizedBox(height: 24),
           OutlinedButton.icon(

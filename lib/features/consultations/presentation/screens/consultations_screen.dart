@@ -20,7 +20,7 @@ class ConsultationsScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, color: Colors.red, size: 48),
               const SizedBox(height: 12),
-              Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+              Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               const SizedBox(height: 6),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -46,9 +46,9 @@ class ConsultationsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.medical_services_outlined, size: 64, color: Colors.grey[300]),
+                  Icon(Icons.medical_services_outlined, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(height: 16),
-                  Text('Aucune consultation', style: TextStyle(color: Colors.grey[600])),
+                  Text('Aucune consultation', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
             );
@@ -79,7 +79,7 @@ class ConsultationsScreen extends ConsumerWidget {
                         if (diagnosis != null && diagnosis.isNotEmpty)
                           Text(diagnosis, maxLines: 1, overflow: TextOverflow.ellipsis),
                         Text(date.length >= 10 ? date.substring(0, 10) : date,
-                            style: TextStyle(color: Colors.grey[500], fontSize: 12)),
+                            style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12)),
                       ],
                     ),
                     trailing: const Icon(Icons.chevron_right),

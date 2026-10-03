@@ -10,7 +10,7 @@
 #   • Tag mobile-pro/v*.*.*                    → production (manuel)
 #
 # Runners requis :
-#   • Linux (Docker) : test + Android
+#   • Shared runner GitLab (Docker executor) : test + Android
 #   • macOS self-hosted (tags: macos, ios) : iOS uniquement
 #
 # Variables à configurer (GitLab → Settings → CI/CD → Variables) :
@@ -43,9 +43,6 @@ variables:
 
 .android-base:
   image: $FLUTTER_IMAGE
-  tags:
-    - flutter
-    - android
   cache:
     key: "android-pro-$CI_COMMIT_REF_SLUG"
     paths:

@@ -18,15 +18,15 @@ class AppointmentKindsScreen extends ConsumerWidget {
       body: state.isLoading
           ? const Center(child: CircularProgressIndicator())
           : state.error != null
-              ? Center(child: Text(state.error!, style: TextStyle(color: Colors.grey[600])))
+              ? Center(child: Text(state.error!, style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)))
               : state.kinds.isEmpty
                   ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.category_outlined, size: 64, color: Colors.grey[300]),
+                          Icon(Icons.category_outlined, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                           const SizedBox(height: 16),
-                          Text('Aucun type de consultation', style: TextStyle(color: Colors.grey[600])),
+                          Text('Aucun type de consultation', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                         ],
                       ),
                     )
@@ -48,7 +48,7 @@ class AppointmentKindsScreen extends ConsumerWidget {
                               title: Text(name),
                               subtitle: Text(
                                 '$duration min${price != null ? ' - $price XAF' : ''}',
-                                style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                                style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
                               ),
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,

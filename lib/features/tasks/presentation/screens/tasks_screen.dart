@@ -360,9 +360,9 @@ class _TaskColumn extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.task_alt, size: 48, color: Colors.grey[300]),
+            Icon(Icons.task_alt, size: 48, color: Theme.of(context).colorScheme.onSurfaceVariant),
             const SizedBox(height: 12),
-            Text('Aucune tâche', style: TextStyle(color: Colors.grey[500])),
+            Text('Aucune tâche', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
           ],
         ),
       );
@@ -485,7 +485,7 @@ class _TaskCard extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 task['description'],
-                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -588,15 +588,15 @@ class _FilterChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[300]!),
+          border: Border.all(color: Theme.of(context).colorScheme.onSurfaceVariant!),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 14, color: Colors.grey[600]),
+            Icon(icon, size: 14, color: Theme.of(context).colorScheme.onSurfaceVariant),
             const SizedBox(width: 4),
-            Text(label, style: TextStyle(fontSize: 12, color: Colors.grey[700])),
+            Text(label, style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
           ],
         ),
       ),
@@ -763,7 +763,7 @@ class _TaskFormSheetState extends State<_TaskFormSheet> {
                 _dueDate != null
                     ? 'Échéance : ${DateFormat('d MMM yyyy', 'fr_FR').format(_dueDate!)}'
                     : 'Ajouter une date d\'échéance',
-                style: TextStyle(color: _dueDate != null ? Colors.black87 : Colors.grey[600]),
+                style: TextStyle(color: _dueDate != null ? Colors.black87 : Theme.of(context).colorScheme.onSurfaceVariant),
               ),
               trailing: _dueDate != null
                   ? IconButton(icon: const Icon(Icons.clear), onPressed: () => setState(() => _dueDate = null))
@@ -833,7 +833,7 @@ class _ScopeButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           border: Border.all(
-            color: selected ? const Color(0xFF0D9488) : Colors.grey[300]!,
+            color: selected ? const Color(0xFF0D9488) : Theme.of(context).colorScheme.onSurfaceVariant!,
             width: selected ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -842,14 +842,14 @@ class _ScopeButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 16, color: selected ? const Color(0xFF0D9488) : Colors.grey[600]),
+            Icon(icon, size: 16, color: selected ? const Color(0xFF0D9488) : Theme.of(context).colorScheme.onSurfaceVariant),
             const SizedBox(width: 6),
             Text(
               label,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 13,
-                color: selected ? const Color(0xFF0D9488) : Colors.grey[700],
+                color: selected ? const Color(0xFF0D9488) : Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ],

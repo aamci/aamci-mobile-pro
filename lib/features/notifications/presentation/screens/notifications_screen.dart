@@ -29,7 +29,7 @@ class NotificationsScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+              Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () => ref.invalidate(notificationsProvider),
@@ -44,9 +44,9 @@ class NotificationsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.notifications_none, size: 64, color: Colors.grey[300]),
+                  Icon(Icons.notifications_none, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(height: 16),
-                  Text('Aucune notification', style: TextStyle(color: Colors.grey[600])),
+                  Text('Aucune notification', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
             );
@@ -68,7 +68,7 @@ class NotificationsScreen extends ConsumerWidget {
                     backgroundColor: isRead ? Colors.grey[200] : _colorForType(type).withValues(alpha: 0.15),
                     child: Icon(
                       _iconForType(type),
-                      color: isRead ? Colors.grey[500] : _colorForType(type),
+                      color: isRead ? Theme.of(context).colorScheme.onSurfaceVariant : _colorForType(type),
                       size: 20,
                     ),
                   ),
@@ -99,7 +99,7 @@ class NotificationsScreen extends ConsumerWidget {
                     message,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
                   ),
                   tileColor: isRead ? null : _colorForType(type).withValues(alpha: 0.03),
                   onTap: () async {

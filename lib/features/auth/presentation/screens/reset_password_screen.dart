@@ -90,7 +90,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 const SizedBox(height: 8),
                 Text(
                   'Minimum 8 caractères.',
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 32),
@@ -180,7 +180,7 @@ class _SuccessView extends StatelessWidget {
         const SizedBox(height: 12),
         Text(
           'Votre mot de passe a été réinitialisé. Vous pouvez maintenant vous connecter.',
-          style: TextStyle(color: Colors.grey[600]),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),

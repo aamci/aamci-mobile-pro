@@ -192,16 +192,16 @@ class _EmptyDay extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.event_available, size: 56, color: Colors.grey[300]),
+          Icon(Icons.event_available, size: 56, color: Theme.of(context).colorScheme.onSurfaceVariant),
           const SizedBox(height: 12),
           Text(
             isToday ? 'Aucun rendez-vous aujourd\'hui' : 'Aucun rendez-vous ce jour',
-            style: TextStyle(color: Colors.grey[600], fontSize: 15),
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 15),
           ),
           const SizedBox(height: 4),
           Text(
             'Journée libre',
-            style: TextStyle(color: Colors.grey[400], fontSize: 13),
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
           ),
         ],
       ),
@@ -255,7 +255,7 @@ class _DayAppointmentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(timeStr, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
-                    Text(endStr, style: TextStyle(fontSize: 11, color: Colors.grey[500])),
+                    Text(endStr, style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                   ],
                 ),
               ),
@@ -282,7 +282,7 @@ class _DayAppointmentCard extends StatelessWidget {
                     Text(name, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
                     Text(
                       appointment.kind?.name ?? appointment.type,
-                      style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12),
                     ),
                   ],
                 ),

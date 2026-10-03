@@ -68,9 +68,9 @@ class PatientRecordScreen extends ConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error_outline, size: 48, color: Colors.grey[400]),
+                Icon(Icons.error_outline, size: 48, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 const SizedBox(height: 16),
-                Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+                Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 const SizedBox(height: 8),
                 ElevatedButton(
                   onPressed: () => ref.invalidate(patientRecordProvider(patientId)),
@@ -197,13 +197,13 @@ class _PatientHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: (color ?? Colors.grey[400])!.withValues(alpha: 0.15),
+        color: (color ?? Theme.of(context).colorScheme.onSurfaceVariant)!.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(label,
           style: TextStyle(
               fontSize: 11,
-              color: color ?? Colors.grey[700],
+              color: color ?? Theme.of(context).colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500)),
     );
   }
@@ -286,7 +286,7 @@ class _InfosTab extends StatelessWidget {
                     Icon(Icons.person_pin,
                         size: 16,
                         color:
-                            isPrimary ? Colors.red[400] : Colors.grey[400]),
+                            isPrimary ? Colors.red[400] : Theme.of(context).colorScheme.onSurfaceVariant),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Column(
@@ -318,7 +318,7 @@ class _InfosTab extends StatelessWidget {
                           Text(
                               '${c['relationship'] ?? ''} • ${c['phone'] ?? ''}',
                               style: TextStyle(
-                                  color: Colors.grey[600], fontSize: 12)),
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12)),
                         ],
                       ),
                     ),
@@ -441,7 +441,7 @@ class _MedicalTab extends StatelessWidget {
                                 fontSize: 10,
                                 color: isActive
                                     ? Colors.green[700]
-                                    : Colors.grey[600]),
+                                    : Theme.of(context).colorScheme.onSurfaceVariant),
                           ),
                         ),
                       ],
@@ -450,13 +450,13 @@ class _MedicalTab extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(item['description'],
                           style: TextStyle(
-                              fontSize: 12, color: Colors.grey[600])),
+                              fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                     ],
                     if (item['diagnosedAt'] != null)
                       Text(
                           'Diagnostiqué le ${_fmt(item['diagnosedAt'])}',
                           style: TextStyle(
-                              fontSize: 11, color: Colors.grey[500])),
+                              fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                   ],
                 ),
               );
@@ -545,11 +545,11 @@ class _TreatmentTile extends StatelessWidget {
               [t['dosage'], t['frequency']]
                   .where((v) => v != null)
                   .join(' — '),
-              style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+              style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
             ),
           if (t['indication'] != null)
             Text('Indication : ${t['indication']}',
-                style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
           Text(
             [
               if (t['startDate'] != null)
@@ -557,7 +557,7 @@ class _TreatmentTile extends StatelessWidget {
               if (t['endDate'] != null)
                 'jusqu\'au ${_fmt(t['endDate'])}',
             ].join(' '),
-            style: TextStyle(fontSize: 11, color: Colors.grey[500]),
+            style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant),
           ),
         ],
       ),
@@ -651,7 +651,7 @@ class _ConstantesTab extends StatelessWidget {
                         children: [
                           Text(label,
                               style: TextStyle(
-                                  fontSize: 10, color: Colors.grey[600])),
+                                  fontSize: 10, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                           Text(
                             value2 != null
                                 ? '$value/$value2 $unit'
@@ -724,7 +724,7 @@ class _ConstantesTab extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 2),
                         child: Text(lab['interpretation'],
                             style: TextStyle(
-                                fontSize: 12, color: Colors.grey[600]),
+                                fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2),
                       ),
@@ -734,11 +734,11 @@ class _ConstantesTab extends StatelessWidget {
                         Text(
                             _fmt(lab['resultDate'] ?? lab['sampleDate']),
                             style: TextStyle(
-                                fontSize: 11, color: Colors.grey[500])),
+                                fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                         if (lab['normalRange'] != null)
                           Text('Norme: ${lab['normalRange']}',
                               style: TextStyle(
-                                  fontSize: 11, color: Colors.grey[500])),
+                                  fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                       ],
                     ),
                   ],
@@ -805,20 +805,20 @@ class _VaccinsTab extends StatelessWidget {
                       if (v['vaccineType'] != null)
                         Text(v['vaccineType'],
                             style: TextStyle(
-                                fontSize: 12, color: Colors.grey[600])),
+                                fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                       const SizedBox(height: 4),
                       Text(
                           'Administré le ${_fmt(v['administeredAt'])}',
                           style: TextStyle(
-                              fontSize: 12, color: Colors.grey[600])),
+                              fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                       if (v['doseNumber'] != null)
                         Text('Dose n°${v['doseNumber']}',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.grey[600])),
+                                fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                       if (v['administeredBy'] != null)
                         Text('Par : ${v['administeredBy']}',
                             style: TextStyle(
-                                fontSize: 11, color: Colors.grey[500])),
+                                fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                     ],
                   ),
                 ),
@@ -913,14 +913,14 @@ class _HistoriqueTab extends StatelessWidget {
                             _fmt(obs['observedAt'] ??
                                 obs['createdAt']),
                             style: TextStyle(
-                                fontSize: 11, color: Colors.grey[500])),
+                                fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                       ],
                     ),
                     if (obs['content'] != null) ...[
                       const SizedBox(height: 4),
                       Text(obs['content'],
                           style: TextStyle(
-                              fontSize: 12, color: Colors.grey[700]),
+                              fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis),
                     ],
@@ -1030,7 +1030,7 @@ class _InfoRow extends StatelessWidget {
             width: 130,
             child: Text(label,
                 style:
-                    TextStyle(fontSize: 12, color: Colors.grey[600])),
+                    TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
           ),
           Expanded(
             child: Text(value!,
@@ -1111,9 +1111,9 @@ class _EmptyState extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 60),
-          Icon(icon, size: 56, color: Colors.grey[300]),
+          Icon(icon, size: 56, color: Theme.of(context).colorScheme.onSurfaceVariant),
           const SizedBox(height: 16),
-          Text(message, style: TextStyle(color: Colors.grey[500])),
+          Text(message, style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
         ],
       ),
     );

@@ -26,18 +26,18 @@ class AvailabilityRulesScreen extends ConsumerWidget {
       body: state.isLoading
           ? const Center(child: CircularProgressIndicator())
           : state.error != null
-              ? Center(child: Text(state.error!, style: TextStyle(color: Colors.grey[600])))
+              ? Center(child: Text(state.error!, style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)))
               : state.rules.isEmpty
                   ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.schedule, size: 64, color: Colors.grey[300]),
+                          Icon(Icons.schedule, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                           const SizedBox(height: 16),
-                          Text('Aucune règle', style: TextStyle(color: Colors.grey[600])),
+                          Text('Aucune règle', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                           const SizedBox(height: 8),
                           Text('Ajoutez vos disponibilités',
-                              style: TextStyle(color: Colors.grey[500], fontSize: 13)),
+                              style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13)),
                         ],
                       ),
                     )

@@ -16,7 +16,7 @@ class ConsultationDetailScreen extends ConsumerWidget {
       body: detailAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(
-          child: Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+          child: Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
         ),
         data: (c) {
           final patient = c['appointment']?['patient'] as Map<String, dynamic>? ?? {};
@@ -43,7 +43,7 @@ class ConsultationDetailScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(date.length >= 10 ? date.substring(0, 10) : date,
-                          style: TextStyle(color: Colors.grey[500])),
+                          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                     ],
                   ),
                 ),
@@ -74,7 +74,7 @@ class ConsultationDetailScreen extends ConsumerWidget {
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 32),
-                    child: Text('Aucun détail enregistré', style: TextStyle(color: Colors.grey[500])),
+                    child: Text('Aucun détail enregistré', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                   ),
                 ),
             ],

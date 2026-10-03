@@ -16,7 +16,7 @@ class PrescriptionDetailScreen extends ConsumerWidget {
       body: detailAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(
-          child: Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+          child: Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
         ),
         data: (p) {
           final patient = p['patient'] as Map<String, dynamic>? ?? {};
@@ -43,7 +43,7 @@ class PrescriptionDetailScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(date.length >= 10 ? date.substring(0, 10) : date,
-                          style: TextStyle(color: Colors.grey[500])),
+                          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                     ],
                   ),
                 ),
@@ -55,7 +55,7 @@ class PrescriptionDetailScreen extends ConsumerWidget {
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Text('Aucun médicament', style: TextStyle(color: Colors.grey[500])),
+                    child: Text('Aucun médicament', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                   ),
                 )
               else
@@ -75,7 +75,7 @@ class PrescriptionDetailScreen extends ConsumerWidget {
                           if (m['duration'] != null) Text('Durée : ${m['duration']}'),
                           if (m['instructions'] != null)
                             Text('Instructions : ${m['instructions']}',
-                                style: TextStyle(color: Colors.grey[600], fontSize: 13)),
+                                style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13)),
                         ],
                       ),
                     ),

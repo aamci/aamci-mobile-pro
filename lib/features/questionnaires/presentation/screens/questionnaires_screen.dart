@@ -58,7 +58,7 @@ class _QuestionnairesScreenState extends ConsumerState<QuestionnairesScreen> {
                 const SizedBox(height: 6),
                 Text(
                   state.error!,
-                  style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
@@ -77,18 +77,18 @@ class _QuestionnairesScreenState extends ConsumerState<QuestionnairesScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.quiz_outlined, size: 64, color: Colors.grey[300]),
+                Icon(Icons.quiz_outlined, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 const SizedBox(height: 16),
                 Text(
                   'Aucun questionnaire',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.grey[600],
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Créez votre premier questionnaire\nen appuyant sur le bouton +',
-                  style: TextStyle(color: Colors.grey[500], fontSize: 13),
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -261,7 +261,7 @@ class _QuestionnaireCard extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           description,
-                          style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                          style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurfaceVariant),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -302,7 +302,7 @@ class _QuestionnaireCard extends StatelessWidget {
                       isActive ? 'Activer' : 'Désactivé',
                       style: TextStyle(
                         fontSize: 12,
-                        color: isActive ? const Color(0xFF16A34A) : Colors.grey[500],
+                        color: isActive ? const Color(0xFF16A34A) : Theme.of(context).colorScheme.onSurfaceVariant,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -331,7 +331,7 @@ class _QuestionnaireCard extends StatelessWidget {
                     '+ ${questions.length - 3} autre${questions.length - 3 > 1 ? 's' : ''} question${questions.length - 3 > 1 ? 's' : ''}',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey[500],
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontStyle: FontStyle.italic,
                     ),
                   ),
@@ -504,7 +504,7 @@ class _CreateQuestionnaireSheetState extends State<_CreateQuestionnaireSheet> {
             const SizedBox(height: 8),
             Text(
               'Vous pourrez ajouter des questions depuis l\'interface web.',
-              style: TextStyle(fontSize: 12, color: Colors.grey[500], fontStyle: FontStyle.italic),
+              style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant, fontStyle: FontStyle.italic),
             ),
             const SizedBox(height: 20),
             SizedBox(

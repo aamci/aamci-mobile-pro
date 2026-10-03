@@ -217,11 +217,11 @@ class _CalendarView extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.event_available, size: 56, color: Colors.grey[300]),
+                      Icon(Icons.event_available, size: 56, color: Theme.of(context).colorScheme.onSurfaceVariant),
                       const SizedBox(height: 12),
                       Text(
                         'Aucun rendez-vous ce jour',
-                        style: TextStyle(color: Colors.grey[600], fontSize: 15),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 15),
                       ),
                     ],
                   ),
@@ -388,7 +388,7 @@ class _AppointmentCard extends StatelessWidget {
                       if (appointment.kind != null)
                         Text(
                           appointment.kind!.name,
-                          style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
                         ),
                     ],
                   ),

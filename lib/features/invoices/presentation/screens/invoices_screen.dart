@@ -17,7 +17,7 @@ class InvoicesScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+              Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () => ref.invalidate(invoicesProvider),
@@ -32,9 +32,9 @@ class InvoicesScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.receipt_long_outlined, size: 64, color: Colors.grey[300]),
+                  Icon(Icons.receipt_long_outlined, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(height: 16),
-                  Text('Aucune facture', style: TextStyle(color: Colors.grey[600])),
+                  Text('Aucune facture', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
             );
@@ -58,7 +58,7 @@ class InvoicesScreen extends ConsumerWidget {
                     leading: Icon(Icons.receipt_long, color: Theme.of(context).colorScheme.primary),
                     title: Text(patientName),
                     subtitle: Text(date.length >= 10 ? date.substring(0, 10) : date,
-                        style: TextStyle(color: Colors.grey[500], fontSize: 12)),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12)),
                     trailing: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.end,

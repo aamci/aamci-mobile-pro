@@ -96,12 +96,12 @@ class _ConversationDetailScreenState extends ConsumerState<ConversationDetailScr
             child: messagesAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (e, _) => Center(
-                child: Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+                child: Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               ),
               data: (messages) {
                 if (messages.isEmpty) {
                   return Center(
-                    child: Text('Aucun message', style: TextStyle(color: Colors.grey[500])),
+                    child: Text('Aucun message', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                   );
                 }
                 final sorted = messages.reversed.toList();
@@ -272,7 +272,7 @@ class _ActionsSheetState extends ConsumerState<_ActionsSheet> {
         children: [
           Center(
             child: Container(width: 36, height: 4, decoration: BoxDecoration(
-              color: Colors.grey[300], borderRadius: BorderRadius.circular(2),
+              color: Theme.of(context).colorScheme.onSurfaceVariant, borderRadius: BorderRadius.circular(2),
             )),
           ),
           const SizedBox(height: 16),
@@ -378,7 +378,7 @@ class _ActionsSheetState extends ConsumerState<_ActionsSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title, style: TextStyle(fontWeight: FontWeight.w600, color: color)),
-                  Text(subtitle, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+                  Text(subtitle, style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
             ),

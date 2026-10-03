@@ -18,7 +18,7 @@ class ConversationsScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+              Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () => ref.invalidate(conversationsProvider),
@@ -33,9 +33,9 @@ class ConversationsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.chat_bubble_outline, size: 64, color: Colors.grey[300]),
+                  Icon(Icons.chat_bubble_outline, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(height: 16),
-                  Text('Aucune conversation', style: TextStyle(color: Colors.grey[600])),
+                  Text('Aucune conversation', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
             );
@@ -83,13 +83,13 @@ class ConversationsScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (role == 'PAT')
-                        Text('Patient', style: TextStyle(color: Colors.grey[500], fontSize: 12)),
+                        Text('Patient', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12)),
                       Text(
                         lastMessage,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          color: unread > 0 ? Colors.black87 : Colors.grey[600],
+                          color: unread > 0 ? Colors.black87 : Theme.of(context).colorScheme.onSurfaceVariant,
                           fontWeight: unread > 0 ? FontWeight.w500 : FontWeight.normal,
                         ),
                       ),

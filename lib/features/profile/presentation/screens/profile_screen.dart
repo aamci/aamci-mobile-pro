@@ -45,7 +45,7 @@ class ProfileScreen extends ConsumerWidget {
           Text(
             user?.email ?? '',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey[600],
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
             textAlign: TextAlign.center,
           ),

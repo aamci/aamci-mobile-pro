@@ -30,7 +30,7 @@ class WalletScreen extends ConsumerWidget {
               error: (e, _) => Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+                  child: Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ),
               ),
               data: (wallet) {
@@ -59,13 +59,13 @@ class WalletScreen extends ConsumerWidget {
             const SizedBox(height: 8),
             movementsAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (e, _) => Text('Erreur', style: TextStyle(color: Colors.grey[600])),
+              error: (e, _) => Text('Erreur', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               data: (movements) {
                 if (movements.isEmpty) {
                   return Padding(
                     padding: const EdgeInsets.only(top: 32),
                     child: Center(
-                      child: Text('Aucun mouvement', style: TextStyle(color: Colors.grey[500])),
+                      child: Text('Aucun mouvement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                     ),
                   );
                 }
@@ -90,7 +90,7 @@ class WalletScreen extends ConsumerWidget {
                         ),
                         title: Text(_typeLabel(type)),
                         subtitle: Text(date.length >= 10 ? date.substring(0, 10) : date,
-                            style: TextStyle(color: Colors.grey[500], fontSize: 12)),
+                            style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12)),
                         trailing: Text(
                           '${isCredit ? '+' : '-'}$amount',
                           style: TextStyle(

@@ -17,7 +17,7 @@ class MedicalNotesScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+              Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () => ref.invalidate(medicalNotesProvider),
@@ -32,9 +32,9 @@ class MedicalNotesScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.note_alt_outlined, size: 64, color: Colors.grey[300]),
+                  Icon(Icons.note_alt_outlined, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(height: 16),
-                  Text('Aucune note médicale', style: TextStyle(color: Colors.grey[600])),
+                  Text('Aucune note médicale', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
             );
@@ -82,7 +82,7 @@ class MedicalNotesScreen extends ConsumerWidget {
                         Text(content, maxLines: 3, overflow: TextOverflow.ellipsis),
                         const SizedBox(height: 4),
                         Text(date.length >= 10 ? date.substring(0, 10) : date,
-                            style: TextStyle(color: Colors.grey[500], fontSize: 12)),
+                            style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12)),
                       ],
                     ),
                   ),

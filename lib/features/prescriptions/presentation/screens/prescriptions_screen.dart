@@ -18,7 +18,7 @@ class PrescriptionsScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Erreur de chargement', style: TextStyle(color: Colors.grey[600])),
+              Text('Erreur de chargement', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
               const SizedBox(height: 8),
               ElevatedButton(
                 onPressed: () => ref.invalidate(prescriptionsProvider),
@@ -33,9 +33,9 @@ class PrescriptionsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.medication_outlined, size: 64, color: Colors.grey[300]),
+                  Icon(Icons.medication_outlined, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(height: 16),
-                  Text('Aucune ordonnance', style: TextStyle(color: Colors.grey[600])),
+                  Text('Aucune ordonnance', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
                 ],
               ),
             );
@@ -59,7 +59,7 @@ class PrescriptionsScreen extends ConsumerWidget {
                     title: Text(patientName),
                     subtitle: Text(
                       '${medications.length} médicament${medications.length > 1 ? 's' : ''} - ${date.length >= 10 ? date.substring(0, 10) : date}',
-                      style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
                     ),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
